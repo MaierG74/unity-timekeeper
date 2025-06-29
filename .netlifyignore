@@ -1,0 +1,6 @@
+# Exclude Electron artifacts and backups
+electron/
+dist-electron/
+timekeeper-electron-backup/
+*.dmg
+*.zip

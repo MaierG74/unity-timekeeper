@@ -32,11 +32,12 @@ Facial recognition time tracking application built with Electron, React, and Sup
    ```
 
 3. Configure environment variables:
-   Create a `.env.local` file in the root directory with the following variables:
-   ```
-   NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
-   ```
+   Create a `.env` file in the root directory (ignored by Git) with the following variables:
+   ```bash
+# .env (do NOT commit)
+VITE_SUPABASE_URL=your-supabase-url
+VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
+```
 
 4. Download facial recognition models:
    Create a `public/models` directory and download the face-api.js models from:
@@ -44,20 +45,20 @@ Facial recognition time tracking application built with Electron, React, and Sup
 
 ## Development
 
-Start the development server:
+Start the development server locally:
 
-```
-npm run electron:dev
+```bash
+npm run dev
 ```
 
 This will launch both the Vite dev server and Electron app in development mode.
 
 ## Building for Production
 
-Build the application for production:
+Build the application for production (static web):
 
-```
-npm run electron:build
+```bash
+npm run build
 ```
 
 This will create distributable packages in the `dist-electron` directory.

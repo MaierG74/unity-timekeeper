@@ -3,8 +3,8 @@ import { FacialProfile } from '../types/database.types';
 
 // Hardcoded values from .env.local for Electron renderer compatibility
 // In production, these should be properly secured
-const supabaseUrl = 'https://ttlyfhkrsjjrzxiagzpb.supabase.co';
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR0bHlmaGtyc2pqcnp4aWFnenBiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjI0OTM4NDAsImV4cCI6MjAzODA2OTg0MH0.DX2KUKr1-0_xOujx7o6E_uwEMKDhJ-m2sFmrsZDOp00';
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string; // from .env
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string; // from .env
 
 // Create Supabase client
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
@@ -143,11 +143,11 @@ export const getFacialProfilesForActiveStaff = async (): Promise<FacialProfile[]
 export const saveFacialProfile = async (staffId: number, faceDescriptor: any) => {
   const { data, error } = await supabase
     .from('facial_profiles')
-    .insert({
+    .upsert({
       staff_id: staffId,
       face_descriptor: faceDescriptor,
       is_active: true
-    })
+    }, { onConflict: 'staff_id' })
     .select()
     .single();
   

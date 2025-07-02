@@ -75,3 +75,13 @@ The application uses the following database tables:
 ## License
 
 [MIT](LICENSE)
+
+## Deployment
+
+This project is configured for continuous deployment to Netlify from the `main` branch.
+
+### Workflow
+
+1.  **Push to `main`**: Any commit pushed to the `main` branch on GitHub will automatically trigger a new build and deployment on Netlify.
+2.  **Environment Variables**: Supabase keys (`VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`) are managed as environment variables in the Netlify site settings. They are not stored in the repository.
+3.  **Build Settings**: The site is built using `npm run build` and the output directory is `dist`.
